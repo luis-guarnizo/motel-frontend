@@ -1,13 +1,22 @@
 import "./Rooms.css";
 import hello from "../assets/react.svg";
-
+import { useEffect } from "react";
+import { useRooms } from "../context/RoomContext";
 
 const Room = () => {
+
+  const { getRooms, rooms, }  = useRooms();
+
+  useEffect(() => {
+    getRooms();
+    //getRoom(rooms[0]._id)
+    //console.log(room.roomNumber)
+  }, []);
+  
+
   return (
     <main>
       <div className="main__container">
-
-       
         <div className="main__title">
           <img src={hello} alt="hello" />
           <div className="main__greeting">
@@ -17,7 +26,6 @@ const Room = () => {
         </div>
 
         <div className="charts">
-
           <div className="charts__right">
             <div className="charts__right__title">
               <div>
@@ -28,46 +36,26 @@ const Room = () => {
             </div>
 
             <div className="charts__right__cards">
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
 
-              <div className="card4">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
+              {rooms.map((roomObject) => (
+                
+                <div className={roomObject.availability ? 'card1' : 'card4'}  key={roomObject._id}>
+                  <h1>H{roomObject.roomNumber}</h1>
+                  <p>{roomObject.availability ? 'Disponible' : 'Ocupada'}</p>
+                  {/* {getRoom(roomObject._id)} */}
+                  {/* <h1>get room {room.roomNumber}</h1> */}
+                  <p>00:24:34</p>
+                </div>
 
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
+                
+              ))}
 
-              <div className="card4">
+              {/* <div className="card4">
                 <h1>H1</h1>
                 <p>00:24:34</p>
               </div>
 
               <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card4">
                 <h1>H1</h1>
                 <p>00:24:34</p>
               </div>
@@ -77,30 +65,6 @@ const Room = () => {
               </div>
 
               <div className="card4">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card4">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card4">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-              <div className="card1">
                 <h1>H1</h1>
                 <p>00:24:34</p>
               </div>
@@ -124,6 +88,59 @@ const Room = () => {
                 <h1>H1</h1>
                 <p>00:24:34</p>
               </div>
+              <div className="card1">
+                <h1>H1</h1>
+                <p>00:24:34</p>
+              </div>
+
+              <div className="card4">
+                <h1>H1</h1>
+                <p>00:24:34</p>
+              </div>
+
+              <div className="card1">
+                <h1>H1</h1>
+                <p>00:24:34</p>
+              </div>
+
+              <div className="card4">
+                <h1>H1</h1>
+                <p>00:24:34</p>
+              </div>
+
+              <div className="card4">
+                <h1>H1</h1>
+                <p>00:24:34</p>
+              </div>
+
+              <div className="card1">
+                <h1>H1</h1>
+                <p>00:24:34</p>
+              </div>
+              <div className="card1">
+                <h1>H1</h1>
+                <p>00:24:34</p>
+              </div>
+
+              <div className="card1">
+                <h1>H1</h1>
+                <p>00:24:34</p>
+              </div>
+
+              <div className="card1">
+                <h1>H1</h1>
+                <p>00:24:34</p>
+              </div>
+
+              <div className="card1">
+                <h1>H1</h1>
+                <p>00:24:34</p>
+              </div>
+
+              <div className="card4">
+                <h1>H1</h1>
+                <p>00:24:34</p>
+              </div> */}
 
               {/* <div className="card1">
                     <h1>Sales</h1>
