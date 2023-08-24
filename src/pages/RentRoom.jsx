@@ -74,7 +74,6 @@ function RegisterPage() {
         </div>
 
 
-
         <div className="menu-container">
           <h2>Seleccione una Habitación</h2>
           <div className="menu-grid">
