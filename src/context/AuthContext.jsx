@@ -21,14 +21,18 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [role, setRole] = useState(null)
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const signup = async (user) => {
     try {
       const res = await registerRequest(user);
+      console.log('res data: ')
       console.log(res.data);
       setUser(res.data);
+      setRole(res.data.role)
+      console.log(res.data.role)
       setIsAuthenticated(true);
     } catch (error) {
       setErrors(error.response.data);
@@ -42,6 +46,8 @@ export const AuthProvider = ({ children }) => {
       console.log(res);
       setIsAuthenticated(true);
       setUser(res.data);
+      //TODO: setiar el role
+      setRole(res.data.role)
     } catch (error) {
       console.log(error);
       if (Array.isArray(error.response.data)) {
@@ -79,6 +85,7 @@ export const AuthProvider = ({ children }) => {
         }
         setIsAuthenticated(true);
         setUser(res.data);
+        setRole(res.data.role)
         setLoading(false)
       } catch (error) {
         console.log(error)
@@ -99,6 +106,7 @@ export const AuthProvider = ({ children }) => {
         user,
         isAuthenticated,
         errors,
+        role,
       }}
     >
       {children}
