@@ -17,6 +17,7 @@ export const useAuth = () => {
   return context;
 };
 
+// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -65,7 +66,9 @@ export const AuthProvider = ({ children }) => {
 
       if (!cookies.token) {
         setIsAuthenticated(false);
-        setUser(null);
+        setLoading(false)
+        return setUser(null);
+        
       }
       try {
         const res = await verifyTokenRequest(cookies.token);
@@ -76,7 +79,9 @@ export const AuthProvider = ({ children }) => {
         }
         setIsAuthenticated(true);
         setUser(res.data);
+        setLoading(false)
       } catch (error) {
+        console.log(error)
         setIsAuthenticated(false);
         setUser(null);
         setLoading(false);
