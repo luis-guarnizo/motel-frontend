@@ -71,6 +71,20 @@ function RegisterPage() {
             <p className="text-red-500">Password is required</p>
           )}
         </div>
+        <div className="input__group">
+          <label htmlFor="role">Role</label>
+          <input
+          
+            type="text"
+            id="role"
+            name="role"
+            {...register("role", { required: true })}
+            placeholder="role"
+          />
+          {errors.role && (
+            <p className="text-red-500">role is required</p>
+          )}
+        </div>
         <button className= 'btn__auth' type="submit">Register</button>
       </form>
     </div>

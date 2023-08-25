@@ -2,6 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import "./RegisterPage.css";
 import { useAuth } from "../../context/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function LoginPage() {
   const {
@@ -9,10 +11,17 @@ function LoginPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const {signin, errors: signinErros} = useAuth();
+  const {signin, errors: signinErros, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const onSubmit = handleSubmit((data) => {
     signin(data);
   });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/rentRoom");
+    }
+  }, [isAuthenticated]);
   return (
     <>
       <div className="login__container">

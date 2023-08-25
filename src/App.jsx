@@ -72,7 +72,7 @@ const App = () => {
                     </div>
                   }
                 />
-                <Route element={<ProtectedRoute></ProtectedRoute>}>
+                <Route element={<ProtectedRoute/>}>
                   <Route
                     path="/rentRoom"
                     element={

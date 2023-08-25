@@ -1,15 +1,18 @@
 import React from "react";
 import './Navbar.css';
 import avatar from '../../assets/man.png';
+import { useAuth } from "../../context/AuthContext";
 
 const Navbar = ({sidebarOpen, openSidebar}) => {
+  const { role } = useAuth();
+  //console.log('el role en nav es: ' + role)
   return (
     <nav className='navbar'>
       <div className='nav_icon' onClick={() => openSidebar()}>
         <i className='fa fa-bars'></i>
       </div>
       <div className='navbar__left'>
-        <a href="#">Suscribers</a>
+        {role == 'admin' ? <a href="#">Suscribers</a> : <a href="#">hola</a>}
         <a href="#">Video Management</a>
         <a className='active_link' href="#">Admin</a>
       </div>
