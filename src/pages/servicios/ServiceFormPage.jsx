@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { useRooms } from "../../context/RoomContext";
 import { useServices } from "../../context/ServiceContext";
+import { useAuth } from '../../context/AuthContext';
 import "./ServiceFormPage.css";
 
 function ServiceFormPage() {
@@ -16,6 +17,10 @@ function ServiceFormPage() {
   const [servicioSeleccionado, setServicioSeleccionado] = useState("");
   const [vehiculoSeleccionado, setVehiculoSeleccionado] = useState("");
   const [personaSeleccionado, setPersonaSeleccionado] = useState();
+
+  //optener usuario
+
+  const {user} = useAuth();
 
   const { getRooms, rooms } = useRooms();
 
@@ -48,13 +53,10 @@ function ServiceFormPage() {
 
   useEffect(() => {
     getRooms();
-    const opcionData = rooms.map((room) => room.roomNumber);
-    setOpciones(opcionData);
-    console.log(opciones);
-    //console.log(opciones1);
-    //console.log('array' + opcionData);
-    //setOpcionSeleccionada(opcionData[1])
-    //console.log(opcionSeleccionada)
+    
+    return () => {
+
+    }
 
     // Establecemos la opción seleccionada inicialmente como la primera opción
   }, []);
@@ -108,9 +110,14 @@ function ServiceFormPage() {
   }; */
 
   const onSubmit = handleSubmit((data) => {
+    
     //event.preventDefault();
     //TODO: convertir datos y agregar el costo AQUI
+    console.log('datos del formulario')
+    console.log(data)
     console.log(data.serviceType)
+    console.log('usuario')
+    console.log(user)
     switch (data.serviceType) {
       case '1 Hora - $ 12.000':
         console.log('1 hora')
@@ -127,14 +134,22 @@ function ServiceFormPage() {
       default:
         break;
     }
+    data["user"] = user
     //objeto["nuevaPropiedad"] = "Nuevo valor";
     createService(data);
-    if (opcionSeleccionada == "") {
+    alert("Habitación alquilada");
+    /* if (opcionSeleccionada == "") {
       alert("Por favor, selecciona una opción.");
     } else {
       alert("Opción seleccionada: " + opcionSeleccionada);
       // Aquí puedes enviar la opción seleccionada al servidor o realizar otras acciones con los datos.
-    }
+    } */
+
+
+    console.log('habitaciones')
+    console.log(opciones);
+
+    getRooms();
   });
   return (
     <>
@@ -145,7 +160,8 @@ function ServiceFormPage() {
             <h2>Habitaciones</h2>
             <div className="menu-grid">
               {rooms.map((opcion, index) => (
-                <div className="menu-item" key={index}>
+                opcion.availability ? (
+                  <div className="menu-item" key={index}>
                   <input
                     type="radio"
                     id={"opcion-${index}"}
@@ -159,6 +175,7 @@ function ServiceFormPage() {
                     H {opcion.roomNumber}
                   </label>
                 </div>
+                ) : null
               ))}
 
               {/* {rooms.map((room, index) => (

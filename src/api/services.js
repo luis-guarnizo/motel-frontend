@@ -2,6 +2,10 @@ import axios from "./axios";
 
 export const getServicesRequest = async () => axios.get("/services");
 
+export const getServicesByTurnoRequest = async () => axios.get("/servicesByTurno");
+
+
+
 export const createServiceRequest = async (service) => axios.post("/services", service);
 
 export const updateServiceRequest = async (service) =>

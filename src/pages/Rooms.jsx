@@ -1,17 +1,27 @@
 import "./Rooms.css";
+
 import hello from "../assets/react.svg";
-import { useEffect } from "react";
+import { useEffect, useState} from "react";
 import { useRooms } from "../context/RoomContext";
+import {useServices} from '../context/ServiceContext';
+import Temporizador from '../rooms/Temporizador'
 
 const Room = () => {
 
-  const { getRooms, rooms, }  = useRooms();
+  const { getRooms, rooms, updateRoom, getRoom }  = useRooms();
+
+  const { services, getServicesByTurno } = useServices();
+
+  
 
   useEffect(() => {
     getRooms();
+    getServicesByTurno();
     //getRoom(rooms[0]._id)
     //console.log(room.roomNumber)
   }, []);
+
+  
   
 
   return (
@@ -44,118 +54,14 @@ const Room = () => {
                   <p>{roomObject.availability ? 'Disponible' : 'Ocupada'}</p>
                   {/* {getRoom(roomObject._id)} */}
                   {/* <h1>get room {room.roomNumber}</h1> */}
-                  <p>00:24:34</p>
+                  
+                  {!roomObject.availability && <Temporizador fechaFinal={roomObject.idService.endTime} idRoom = {roomObject._id}></Temporizador>}
                 </div>
 
                 
               ))}
 
-              {/* <div className="card4">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card4">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card4">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card4">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card4">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card4">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card1">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div>
-
-              <div className="card4">
-                <h1>H1</h1>
-                <p>00:24:34</p>
-              </div> */}
-
-              {/* <div className="card1">
-                    <h1>Sales</h1>
-                    <p>$124,300</p>
-                </div>
-
-                <div className="card1">
-                    <h1>Users</h1>
-                    <p>1000</p>
-                </div>
-
-                <div className="card1">
-                    <h1>Orders</h1>
-                    <p>1881</p>
-                </div> */}
+              
             </div>
           </div>
         </div>
