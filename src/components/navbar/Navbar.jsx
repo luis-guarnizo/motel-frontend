@@ -12,9 +12,10 @@ const Navbar = ({sidebarOpen, openSidebar}) => {
         <i className='fa fa-bars'></i>
       </div>
       <div className='navbar__left'>
-        {role == 'admin' ? <a href="#">Suscribers</a> : <a href="#">hola</a>}
+        {role == 'admin' ? <a href="#">Suscribers</a> :<a href="#">Suscribers</a>}
         <a href="#">Video Management</a>
-        <a className='active_link' href="#">Admin</a>
+        {role == 'admin' ? <a className='active_link' href="#">Admin</a> : null}
+        
       </div>
       <div className='navbar__right'>
         <a href="#">

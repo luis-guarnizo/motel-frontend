@@ -1,5 +1,11 @@
 import { createContext, useContext, useState } from "react";
-import { createRoomRequest, getRoomsRequest, getRoomRequest } from "../api/rooms";
+import {
+  createRoomRequest,
+  getRoomsRequest,
+  getRoomRequest,
+  deleteRoomRequest,
+  updateRoomRequest,
+} from "../api/rooms";
 
 const RoomContext = createContext();
 
@@ -24,7 +30,7 @@ export function RoomProvider({ children }) {
   const getRooms = async () => {
     try {
       const res = await getRoomsRequest();
-      //   console.log(res);
+      console.log(res.data);
       setRooms(res.data);
     } catch (error) {
       console.log(error);
@@ -33,12 +39,25 @@ export function RoomProvider({ children }) {
   const getRoom = async (id) => {
     try {
       const res = await getRoomRequest(id);
-      //   console.log(res);
+      console.log(res);
       setRoom(res.data);
     } catch (error) {
       console.log(error);
     }
   };
+  const deleteRoom = async (id) => {
+    const res = await deleteRoomRequest(id);
+    console.log(res.data);
+  };
+  const updateRoom = async (id, room) => {
+    try {
+      const res = await updateRoomRequest(id, room);
+      console.log(res.data);
+    } catch (error) {
+      console.error(error)
+    }
+  };
+
   return (
     <RoomContext.Provider
       value={{
@@ -46,7 +65,9 @@ export function RoomProvider({ children }) {
         room,
         createRoom,
         getRooms,
-        getRoom
+        getRoom,
+        deleteRoom,
+        updateRoom,
       }}
     >
       {children}

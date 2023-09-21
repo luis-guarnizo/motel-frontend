@@ -1,5 +1,9 @@
 import { createContext, useContext, useState } from "react";
-import { createServiceRequest, getServicesRequest } from "../api/services";
+import {
+  createServiceRequest,
+  getServicesRequest,
+  getServicesByTurnoRequest,
+} from "../api/services";
 
 const ServiceContext = createContext();
 
@@ -15,6 +19,8 @@ export const useServices = () => {
 export function ServiceProvider({ children }) {
   const [services, setServices] = useState([]);
 
+  const [totalCostTurno, setTotalCostTurno] = useState(0);
+
   const createService = async (service) => {
     console.log(service);
     const res = await createServiceRequest(service);
@@ -29,12 +35,27 @@ export function ServiceProvider({ children }) {
       console.log(error);
     }
   };
+
+  const getServicesByTurno = async () => {
+    try {
+      const res = await getServicesByTurnoRequest();
+      //   console.log(res);
+      setServices(res.data);
+
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <ServiceContext.Provider
       value={{
         services,
+        totalCostTurno,
+        setTotalCostTurno,
         createService,
         getServices,
+        getServicesByTurno,
       }}
     >
       {children}
