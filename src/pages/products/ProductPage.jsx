@@ -12,7 +12,7 @@ import "./Products.css";
 
 
 function ProductPage() {
-  const { getProducts, createProduct, products } = useProducts();
+  const { getProducts, createProduct, products, deleteProduct } = useProducts();
 
   const { user } = useAuth();
 
@@ -75,6 +75,7 @@ function ProductPage() {
                     <button
                       onClick={() => {
                         console.log(producto._id);
+                        deleteProduct(producto._id)
                       }}
                       className="button-common red-bg"
                     >

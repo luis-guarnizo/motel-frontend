@@ -20,6 +20,7 @@ import { ProductProvider } from "./context/ProductContext";
 import RoomFormPage from "./pages/rooms/RoomFormPage";
 import ServiceFormPage from "./pages/servicios/ServiceFormPage";
 import SaleFormPage from "./pages/sales/SaleFormPage";
+import SalesPage from "./pages/sales/SalesPage";
 import AddProductPage from "./pages/products/AddProductPage";
 import ProductPage from "./pages/products/ProductPage";
 
@@ -234,6 +235,23 @@ const App = () => {
                                 closeSidebar={closeSidebar}
                               />
                               <SaleFormPage />
+                            </div>
+                          }
+                        />
+
+                        <Route
+                          path="/sales"
+                          element={
+                            <div className="container">
+                              <Navbar
+                                sidebarOpen={sidebarOpen}
+                                openSidebar={openSidebar}
+                              />
+                              <Sidebar
+                                sidebarOpen={sidebarOpen}
+                                closeSidebar={closeSidebar}
+                              />
+                              <SalesPage />
                             </div>
                           }
                         />

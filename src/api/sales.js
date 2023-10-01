@@ -1,7 +1,14 @@
 import axios from "./axios";
 
-export const getSaleRequest = async () => axios.get("/sales");
+export const getSalesRequest = async () => axios.get("/sales");
 
-export const createSaleRequest = async (sale) => axios.post("/sales", sale);
+export const createSaleAdminRequest = async (sale) => axios.post("/sales/admin", sale);
+export const createSaleReceptionRequest = async (sale) => axios.post("/sales/reception", sale);
+export const createSaleClientRequest = async (sale) => axios.post("/sales/client", sale);
 
-export const getServiceRequest = async (id) => axios.get(`/services/${id}`);
+export const updateSaleRequest = async (id, sale) =>
+  axios.put(`/sales/${id}`, sale);
+
+export const deleteSaleRequest = async (id) => axios.delete(`/sales/${id}`);
+
+export const getSaleRequest = async (id) => axios.get(`/sales/${id}`);

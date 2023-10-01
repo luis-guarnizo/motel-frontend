@@ -4,6 +4,7 @@ import {
   getProductsRequest,
   updateProductRequest,
   getProductRequest,
+  deleteProductRequest
 } from "../api/products";
 
 const ProductContext = createContext();
@@ -43,6 +44,18 @@ export function ProductProvider({ children }) {
       console.error(error);
     }
   };
+
+  const deleteProduct = async (id) => {
+    try {
+      const res = await deleteProductRequest(id);
+      console.log(res);
+      //devulve un arreglo nuevo sin la tarea q se acaba de eliminar
+      if(res.status == 200) setProducts(products.filter(product => product._id != id ))
+      
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const getProduct = async (id) => {
     try {
       const res = await getProductRequest(id);
@@ -61,6 +74,7 @@ export function ProductProvider({ children }) {
         getProducts,
         updateProduct,
         getProduct,
+        deleteProduct,
       }}
     >
       {children}

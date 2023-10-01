@@ -52,7 +52,7 @@ const inputTotalTecogidoStyle = {
 };
 
 function AddProductPage() {
-  const { getProducts, getProduct, createProduct, products, updateProduct } = useProducts();
+  const {  getProduct, createProduct, updateProduct } = useProducts();
 
   const { user } = useAuth();
 
@@ -68,6 +68,7 @@ function AddProductPage() {
         const product = await getProduct(params.id);
         console.log(product);
         setValue("name", product.name);
+        setValue("category", product.category);
         setValue("quantity", product.quantity);
         setValue("price", product.price);
         setValue("priceReception", product.priceReception);
@@ -104,6 +105,17 @@ function AddProductPage() {
                     id="name"
                     name="name"
                     {...register("name")}
+                  />
+                </label>
+
+                <label>
+                  Categoria:
+                  <input
+                    style={inputTotalTecogidoStyle}
+                    type="text"
+                    id="category"
+                    name="category"
+                    {...register("category")}
                   />
                 </label>
 

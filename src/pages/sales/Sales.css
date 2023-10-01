@@ -1,0 +1,60 @@
+.button-link {
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: #007bff; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px; /* Bordes redondeados */
+    border: 1px solid #007bff; /* Borde del botón */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 8px;
+  }
+  
+  .button-link:hover {
+    background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
+    border: 1px solid #0056b3; /* Cambia el color del borde al pasar el mouse */
+  }
+
+  /* Estilo específico para cambiar el color de fondo del botón a rojo */
+.button-common.red-bg {
+    background-color: #ff0000; /* Color de fondo rojo */
+    color: white;
+    border: 1px solid #ff0000; 
+    padding: 2px 8px;/* Borde rojo */
+    margin-top: 4px;
+  }
+  
+  .button-common.red-bg:hover {
+    background-color: #cc0000; /* Cambia el color de fondo a un tono más oscuro al pasar el mouse */
+    border: 1px solid #cc0000; /* Cambia el color del borde a un tono más oscuro al pasar el mouse */
+  }
+
+  /* Sales.css */
+
+/* Estilo para la lista desordenada */
+.product-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Estilo para los elementos de lista */
+.product-item {
+  margin-bottom: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
+
+/* Estilo para el nombre del producto */
+.product-name {
+  font-weight: bold;
+}
+
+/* Estilo para la cantidad del producto */
+.product-quantity {
+  color: #666;
+}
